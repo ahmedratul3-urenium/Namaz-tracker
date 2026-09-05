@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaz Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#064e3b">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-top">
+                <h1><i class="fa-solid fa-moon"></i> Namaz Tracker</h1>
+                <div class="header-actions">
+                    <!-- Install button hidden by default until browser triggers event -->
+                    <button id="install-btn" class="hidden" title="Install App to Device"><i class="fa-solid fa-download"></i></button>
+                    <button id="settings-btn" title="Settings"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="city-input" placeholder="Enter City/Town name (e.g. Dhaka)">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </header>
+
+        <main>
+            <section class="next-prayer-card">
+                <h2>Next Prayer</h2>
+                <h3 id="next-prayer-name">--</h3>
+                <div class="countdown" id="countdown">--:--:--</div>
+                <p id="location-display"><i class="fa-solid fa-location-dot"></i> Please enter a city</p>
+                <div class="date-islamic" id="islamic-date">--</div>
+                
+                <div class="ramadan-times">
+                    <div class="rt-box">
+                        <span class="rt-label"><i class="fa-solid fa-cloud-sun"></i> Sahri Ends</span>
+                        <span class="rt-time" id="time-sahri">--:--</span>
+                    </div>
+                    <div class="rt-box">
+                        <span class="rt-label"><i class="fa-solid fa-utensils"></i> Iftar Time</span>
+                        <span class="rt-time" id="time-iftar">--:--</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="prayer-times">
+                <div class="prayer-row" data-prayer="Fajr">
+                    <span class="p-name">Fajr</span>
+                    <span class="p-time" id="time-fajr">--:--</span>
+                    <button class="alarm-toggle active"><i class="fa-solid fa-bell"></i></button>
+                </div>
+                <div class="prayer-row" data-prayer="Sunrise">
+                    <span class="p-name">Sunrise</span>
+                    <span class="p-time" id="time-sunrise">--:--</span>
+                    <button class="alarm-toggle"><i class="fa-solid fa-bell-slash"></i></button>
+                </div>
+                <div class="prayer-row" data-prayer="Dhuhr">
+                    <span class="p-name">Dhuhr</span>
+                    <span class="p-time" id="time-dhuhr">--:--</span>
+                    <button class="alarm-toggle active"><i class="fa-solid fa-bell"></i></button>
+                </div>
+                <div class="prayer-row" data-prayer="Asr">
+                    <span class="p-name">Asr</span>
+                    <span class="p-time" id="time-asr">--:--</span>
+                    <button class="alarm-toggle active"><i class="fa-solid fa-bell"></i></button>
+                </div>
+                <div class="prayer-row" data-prayer="Maghrib">
+                    <span class="p-name">Maghrib</span>
+                    <span class="p-time" id="time-maghrib">--:--</span>
+                    <button class="alarm-toggle active"><i class="fa-solid fa-bell"></i></button>
+                </div>
+                <div class="prayer-row" data-prayer="Isha">
+                    <span class="p-name">Isha</span>
+                    <span class="p-time" id="time-isha">--:--</span>
+                    <button class="alarm-toggle active"><i class="fa-solid fa-bell"></i></button>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Developed by <strong>RATUL AHMED SAYED</strong></p>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Settings</h2>
+            <div class="setting-group">
+                <label for="calc-method">Calculation Method</label>
+                <select id="calc-method">
+                    <option value="1">University of Islamic Sciences, Karachi</option>
+                    <option value="2">Islamic Society of North America (ISNA)</option>
+                    <option value="3">Muslim World League (MWL)</option>
+                    <option value="4">Umm Al-Qura University, Makkah</option>
+                    <option value="5">Egyptian General Authority of Survey</option>
+                    <option value="8">Gulf Region</option>
+                    <option value="9">Kuwait</option>
+                    <option value="10">Qatar</option>
+                    <option value="11">Majlis Ugama Islam Singapura</option>
+                    <option value="13">Diyanet İşleri Başkanlığı, Turkey</option>
+                </select>
+            </div>
+            <div class="setting-group checkbox-group">
+                <label for="enable-audio"><input type="checkbox" id="enable-audio" checked> Play Audio Adhan</label>
+            </div>
+            <div class="setting-group checkbox-group">
+                <label for="enable-push"><input type="checkbox" id="enable-push" checked> Enable Push Notifications</label>
+            </div>
+            <button id="save-settings" class="primary-btn">Save</button>
+        </div>
+    </div>
+
+    <audio id="adhan-audio" src="https://media.blubrry.com/muslim_central_adhan/content.blubrry.com/muslim_central_adhan/Adhan_Makkah.mp3" preload="none"></audio>
+    <script src="app.js"></script>
+</body>
+</html>

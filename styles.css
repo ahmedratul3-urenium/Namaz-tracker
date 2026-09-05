@@ -1,0 +1,87 @@
+﻿:root {
+    --bg-color: #f0f4f2;
+    --card-bg: #ffffff;
+    --primary-color: #064e3b;
+    --primary-light: #0ea5e9;
+    --accent-color: #d4af37;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --border-radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; min-height: 100vh; }
+
+/* Full screen adaptive container */
+.app-container { 
+    width: 100%; 
+    max-width: 100%; /* Change to 100% to fill desktop screens if desired, but clamping max-width looks more app-like */
+    background-color: var(--card-bg); 
+    min-height: 100vh; 
+    box-shadow: var(--shadow); 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .app-container { max-width: 800px; margin: 0 auto; }
+}
+
+header { background-color: var(--primary-color); color: white; padding: 1.5rem 1.5rem 2rem 1.5rem; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.header-top h1 { font-size: 1.4rem; font-weight: 500; display: flex; align-items: center; gap: 10px; color: var(--accent-color); }
+
+.header-actions { display: flex; gap: 15px; }
+.header-actions button { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; transition: transform 0.2s, color 0.2s; }
+.header-actions button:hover { color: var(--accent-color); transform: scale(1.1); }
+#install-btn.hidden { display: none; }
+
+.search-bar { display: flex; background: rgba(255,255,255,0.2); border-radius: var(--border-radius); padding: 5px; backdrop-filter: blur(5px); }
+.search-bar input { flex: 1; background: none; border: none; padding: 10px 15px; color: white; font-size: 0.95rem; outline: none; }
+.search-bar input::placeholder { color: rgba(255,255,255,0.7); }
+.search-bar button { background: var(--accent-color); border: none; color: var(--primary-color); width: 40px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: opacity 0.2s; }
+.search-bar button:hover { opacity: 0.9; }
+
+main { padding: 1.5rem; margin-top: -30px; flex: 1; }
+.next-prayer-card { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); padding: 1.5rem; border-radius: var(--border-radius); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(6, 78, 59, 0.1); }
+.next-prayer-card h2 { font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+#next-prayer-name { font-size: 2rem; color: var(--primary-color); margin: 5px 0; }
+.countdown { font-size: 2.5rem; font-weight: 600; color: var(--accent-color); margin-bottom: 5px; font-variant-numeric: tabular-nums; }
+#location-display { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px; }
+#islamic-date { font-size: 0.85rem; color: var(--primary-color); font-weight: 500; margin-bottom: 15px; }
+
+/* Sahri & Iftar styles */
+.ramadan-times { display: flex; justify-content: center; gap: 15px; border-top: 1px solid #e2e8f0; padding-top: 15px; margin-top: 15px; }
+.rt-box { display: flex; flex-direction: column; align-items: center; background: #f1f5f9; padding: 10px 15px; border-radius: 8px; flex: 1; border: 1px solid #e2e8f0;}
+.rt-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; font-weight: 500; display: flex; gap: 5px; align-items: center; }
+.rt-time { font-size: 1.1rem; color: var(--primary-color); font-weight: 600; }
+
+.prayer-times { display: grid; gap: 10px; }
+@media (min-width: 768px) {
+    .prayer-times { grid-template-columns: 1fr 1fr; gap: 15px; }
+}
+.prayer-row { display: flex; align-items: center; padding: 1rem; background: #f8fafc; border-radius: var(--border-radius); transition: transform 0.2s, background 0.2s; border: 1px solid transparent; }
+.prayer-row:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); }
+.prayer-row.active-next { background: rgba(6, 78, 59, 0.05); border-color: var(--primary-color); transform: scale(1.02); }
+.p-name { flex: 1; font-weight: 500; }
+.p-time { font-weight: 600; margin-right: 15px; font-variant-numeric: tabular-nums; }
+.alarm-toggle { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; }
+.alarm-toggle.active { color: #10b981; }
+
+footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text-muted); background: var(--card-bg); border-top: 1px solid #e2e8f0; }
+footer strong { color: var(--primary-color); letter-spacing: 0.5px; }
+
+/* Modal */
+.modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(3px); }
+.modal.hidden { display: none; }
+.modal-content { background: white; padding: 2rem; border-radius: var(--border-radius); width: 90%; max-width: 400px; position: relative; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+.close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+.modal h2 { color: var(--primary-color); margin-bottom: 1.5rem; }
+.setting-group { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 8px; }
+.setting-group label { font-size: 0.9rem; font-weight: 500; }
+.setting-group select { padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; }
+.checkbox-group label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.primary-btn { width: 100%; background: var(--primary-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+.primary-btn:hover { background: #04392b; }
